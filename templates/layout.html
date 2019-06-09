@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Summer,s blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Ö÷ÌâµÄ¸öÈË²©¿ÍÄ£°å£¬ÓÅÑÅ¡¢ÎÈÖØ¡¢´óÆø,µÍµ÷¡£" />
+<link href="{{url_for('static',filename='css/base.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='css/index.css')}}" rel="stylesheet">
+<style>
+#content{
+border:5px groove gray;
+padding: 10px;
+margin-top: 20px;
+box-shadow: 10px 7px 3px 2px gray;}
+</style>
+</head>
+<body>
+<header>
+
+  <nav class="topnav" id="topnav"><a href="{{url_for('blog')}}"><span>Welcome to ehall blog</span><span class="en">校园分享</span></a><a href="{{url_for('blog')}}"><span>写文章</span><span class="en">Protal</span></a><a href="{{url_for('listb')}}"><span>文章列表</span><span class="en">List of articles</span></nav>
+</header>
+
+<div class="template">
+  <div class="box">
+    <ul>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云大18.jpg')}}"></a><span>云大校园</span></li>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云南大学东陆9.jpg')}}"></a><span>云大校园</span></li>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云大20.jpg')}}"></a><span>云大校园</span></li>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云大21.jpg')}}"></a><span>云大校园</span></li>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云大22.jpg')}}"></a><span>云大校园</span></li>
+      <li><a href="/blog" ><img src="{{url_for('static',filename='images/云大23.jpg')}}"></a><span>云大校园</span></li>
+    </ul>
+  </div>
+</div>
+ <div id="content">
+ {% block body %} {% endblock %}
+ </div>
+<script src="{{url_for('static',filename='js/silder.js')}}"></script>
+</body>
+</html>
+

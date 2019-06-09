@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- Viewport metatags -->
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index/css/nothing.css') }}"  media="screen" />
+
+    <script>
+            var i=3;
+            var timer=null;
+            function change()
+            {
+                var lab = document.getElementById("lab");
+                lab.innerText = i+"秒后返回上一页...";
+                i--;
+                if(i==0)
+                {
+                    window.clearInterval(timer);
+                    timer=null;
+                    {#window.location.href = "{{ url_for("welcome") }}";#}
+                    window.history.go(-1);
+
+                    var a = document.getElementById("a1");
+                    doclick(a);
+                }
+            }
+            function start_timer()
+            {
+                timer = window.setInterval("change()",1000);
+            }
+
+            function doclick(obj)
+            {
+                javascript:location.replace(obj.href); event.returnValue=false;
+            }
+        </script>
+
+<title>404错误页面</title>
+
+</head>
+
+<body onload="start_timer()" background="{{ url_for('static', filename="index/images/blueprint.png") }}">
+
+	<!-- Main Wrapper. Set this to 'fixed' for fixed layout and 'fluid' for fluid layout' -->
+	<div id="da-wrapper" class="fluid">
+
+        <!-- Content -->
+        <div id="da-content">
+
+            <!-- Container -->
+            <div class="da-container clearfix">
+
+            	<div id="da-error-wrapper">
+
+                   	<div id="da-error-pin" style="background-image: {{ url_for('static', filename="index/images/error-pin.png") }}"></div>
+                    <div id="da-error-code" style="background-image: {{ url_for('static', filename="index/images/error-hanger.png") }}">
+                    	error <span>404</span>                    </div>
+
+                	<h1 class="da-error-heading">不好意思，页面让狗子叼走了！</h1>
+                    <p><a id="lab">来咬我呀</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

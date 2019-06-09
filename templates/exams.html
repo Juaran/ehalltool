@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title>成绩查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/pintuer.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/admin.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/exam.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/exam2.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/exam3.css") }}">
+    <script src="{{ url_for('static', filename="index/js/jquery.js") }}"></script>
+    <script src="{{ url_for('static', filename="index/js/pintuer.js") }}"></script>
+
+    {#    取选择的学期 #}
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("button").click(function() {
+              const chooseTerm = $(this).html();
+
+              $.ajax({
+                  url: "{{ url_for('exams', username=username) }}",
+                  type: 'POST',
+                  data: chooseTerm,
+                  success: function (msg) {
+                      {#alert(msg.name)#}
+                  }
+              })
+          }) });
+    </script>
+
+</head>
+
+<body>
+
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-key"></span> 考试安排</strong></div>
+
+    <div class="body-content">
+
+        <header class="lightGrayPanel panelShadow noprint">
+        <div class="container">
+            <div class="row" style="padding-top: 10px; padding-bottom: 10px; text-align: center">
+                <form method="post">
+                    {% for i in range(0, 4) %}
+                        <a href="{{ url_for('exams', username=username) }}" target="_self">
+                            <button style="background-color: #fff; border-color: #ccc; padding: 5px 10px;font-size: 12px;" type="button" class="btn btn-default btn-sm" type="submit">{{ term+i }}年秋季学期</button>
+                        </a></button>
+                        <a href="{{ url_for('exams', username=username) }}" target="_self">
+                            <button style="background-color: #fff; border-color: #ccc; padding: 5px 10px;font-size: 12px;" type="button" type="button" class="btn btn-default btn-sm" type="submit">{{ term+i+1 }}年春季学期</button>
+                        </a></button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        </header>
+
+        {% for exam in exams %}
+
+            <div class="scenes-cbrt-record bh-row wdksap-ykks-content" style="display: block;">
+                <div class="scenes-cbrt-left">
+                    <div class="scenes-cbrt-no" style="border-color:#60be29;">
+                        <i class="iconfont icon-check bh-color-success"></i>
+                    </div>
+                </div>
+                <div class="scenes-cbrt-right">
+                    <div class="bh-col-md-12 scenes-cbrt-card-view scenes-cbrt-card-item bh-mt-8">
+                        <div class="bh-l-inline">
+                            <h3 class="scenes-cbrt-title bh-l-inline wdksap-stringCut" title="">{{ exam['name'] }}</h3>
+                            <a class="bh-tag bh-tag-primary no-active wdksap-stringCut" title="">2018学年 秋季学期 期末考试</a>
+                        </div>
+                        <div class="bh-mt-16">
+                            <!-- <div class="bh-l-inline bh-mh-16"
+                                style="height: 20px; width: 0px; border-left: solid 1px #d8dcf0; vertical-align: top;"></div> -->
+                            <div>
+                                <div class="bh-text-caption bh-color-heading  bh-l-inline" style="width: 255px;">
+                                    考试时间：<span class="sbjd-shyj-tip bh-color-default wdksap-stringCut  " title="2019-01-07 14:00-16:00(星期一)">{{ exam['examTime'] }}</span>
+                                </div>
+                                <div class="bh-l-inline bh-mh-16" style="height: 20px; width: 0px; border-left: solid 1px #d8dcf0; vertical-align: top;"></div>
+                                <div class="bh-text-caption bh-color-heading  bh-l-inline">
+                                    考试地点：<span class="sbjd-shyj-tip bh-color-default bh-l-inline wdksap-stringCut  " title="力行楼4108" style="width: 200px;">{{ exam['classRoom'] }}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bh-text-caption bh-color-heading bh-l-inline">
+                                    主讲教师：<span class="sbjd-shyj-tip bh-color-default bh-l-inline wdksap-stringCut   " title="周小兵" style="width: 200px;">{{ exam['teacher'] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+</div>
+</body>
+</html>

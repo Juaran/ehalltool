@@ -1,0 +1,109 @@
+.name_left{
+    width: 20%;
+    margin-top:20px;
+}
+.bh-dropdown .bh-btn{
+    text-align: center;
+}
+.select_group{
+    margin: 30px;
+}
+.jxrw-label-term {
+    padding:0px 0px 0px 20px;color:#bbb;
+}
+.jxrw-a-adjust {
+    font-size:12px;padding-left:10px;font-weight:normal;cursor:pointer
+}
+.ksap-table-container table tr{
+    border-left: solid 1px #bbb;
+    border-top: solid 1px #bbb;
+}
+.ksap-table-container table tr:last-child{
+    border-bottom: solid 1px #bbb;
+}
+.ksap-table-container table tr td{
+    border-right: solid 1px #bbb;
+}
+.ksap-tableCell-title {
+    background-color: #F7F8FC;
+    font-weight: 600;
+}
+
+.ksap-step .scenes-cbrt-record:first-child:before {
+    height:0;
+}
+.ksap-step .scenes-cbrt-no {
+    border-color: #E24034;
+}
+/*已经完成的安排*/
+.ksap-step .ksap-step-done .scenes-cbrt-no {
+    border-color: #d8dcf0;
+}
+.ksap-step .ksap-step-done .bh-tag-primary {
+    background-color: #d8dcf0;
+}
+.ksap-step .ksap-step-done,.ksap-step .ksap-step-done h4,.ksap-step .ksap-step-done .bh-color-heading{
+    color:#999999 !important;
+}
+
+.demo-no-data{
+	width: 100%;
+    height: 600px;
+    background-position: center;
+	background-repeat: no-repeat;
+	background-image:url('../../../public/images/no_data.png');
+}
+
+.ksap-table{
+	border-color: #E8E0EB;
+	background-color: #FFFFFF;
+}
+
+.reviewed-xq table {
+    border-top: solid 1px #D8DCF0;
+    border-left: solid 1px #D8DCF0;
+}
+.reviewed-xq table td{
+	height:29px;
+    border-bottom: solid 1px #D8DCF0;
+    border-right: solid 1px #D8DCF0;
+}
+
+.wdksap-stringCut {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.scenes-cbrt-card-item-title {
+	padding: 22px 16px 4px 16px;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.w-hasdata-show-after:after {
+	height:0px;
+}
+
+.wdksap-removeHeight.w-hasdata-show-after:after {
+	height:calc(100% - 24px);
+}
+
+.wdksap-ykks-content h3,.wdksap-ykks-content .bh-color-default, .wdksap-ykks-content .bh-color-heading {
+    color:#999 !important;
+}
+.wdksap-ykks-content .bh-tag-primary,.wdksap-ykks-content .bh-tag-warning {
+    background-color: #999 !important;
+}
+.ksap-step .wdksap-ykks-content .scenes-cbrt-no {
+    border-color: #d8dcf0;
+}
+
+.not-allowed{
+	cursor:not-allowed;
+}
+
+/* .ksap-right  .scenes-cbrt-record:after{
+    display: none;
+} */

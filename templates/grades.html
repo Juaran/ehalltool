@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title>成绩查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/pintuer.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/admin.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="index/css/grades.css") }}">
+    <script src="{{ url_for('static', filename="index/js/jquery.js") }}"></script>
+    <script src="{{ url_for('static', filename="index/js/pintuer.js") }}"></script>
+    <script src="{{ url_for('static', filename="index/js/grades.js") }}"></script>
+
+    <style type="text/css">
+        table {border-collapse: collapse; }
+        th {border:solid 1px; height: 40px;vertical-align: middle; border-style: solid; align-content: center; background-color: #F0F1F9; border-color: #d8dcf0}
+        td {border:solid 1px; height: 50px; vertical-align: middle; align-content: center; text-align: center; border-style: solid; background-color: #F0F1F9; border-color: #d8dcf0}
+    </style>
+
+    {#    取选择的学期 #}
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("button").click(function() {
+              const chooseTerm = $(this).html();
+              {#alert($chooseTerm)#}
+
+              $.ajax({
+                  url: "{{ url_for('grades', username=username) }}",
+                  type: 'POST',
+                  data: chooseTerm,
+                  success: function (msg) {
+                      {#alert(msg.name)#}
+                  }
+              })
+          }) });
+    </script>
+
+</head>
+
+<body>
+
+<div class="panel admin-panel">
+    <div class="panel-head"><strong><span class="icon-key"></span> 成绩查询</strong></div>
+
+    <div class="body-content">
+
+        <header class="lightGrayPanel panelShadow noprint">
+        <div class="container">
+            <div class="row" style="padding-top: 10px; padding-bottom: 10px; text-align: center">
+                <form method="post">
+                    {% for i in range(0, 4) %}
+                        <a href="{{ url_for('grades', username=username) }}" target="_self">
+                            <button type="button" class="btn btn-default btn-sm" type="submit">{{ term+i }}年秋季学期</button>
+                        </a></button>
+                        <a href="{{ url_for('grades', username=username) }}" target="_self">
+                            <button type="button" class="btn btn-default btn-sm" type="submit">{{ term+i+1 }}年春季学期</button>
+                        </a></button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        </header>
+
+        {% for grade in grades %}
+
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 resultCardPadding ng-scope" ng-repeat="result in currentResultList">
+                {% if grade['score'][0] == '9' %}
+                    <div class="resultCard blueCard" ng-class="warningLevel(result.Result)">
+                {% else %}
+                    <div class="resultCard defaultCard" ng-class="warningLevel(result.Result)">
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="courseTitle ng-binding">{{ grade['name'] }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 courseResult text-left ng-binding">{{ grade['score'] }}</div>
+                    <div class="col-sm-8">
+                        <div class="row courseCreditAndGPA">
+                            <div class="col-sm-12 ng-binding">所得绩点：{{ grade['getPoint'] }}</div>
+                        </div>
+                        <div class="row courseCreditAndGPA">
+                            <div class="col-sm-12 ng-binding">学分：{{ grade['xueFen'] }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9" style="width: 100%; text-align: justify; text-justify:inter-ideograph;">
+                        <h5 class="ng-binding">平时期中期末：{{ grade['pscj'] +" - "+ grade['qzcj'] +" - " + grade['qmcj'] }}</h5></div>
+                </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
