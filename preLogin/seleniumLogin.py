@@ -93,7 +93,7 @@ def getCookie(UserName, PassWord):
         time.sleep(0.1)
 
         """ 点击进入一个桌面应用 """
-        course_schedual = WebDriverWait(wb, 5).until(EC.element_to_be_clickable((By.CLASS_NAME, "widget-title")))
+        course_schedual = WebDriverWait(wb, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="widget-hot-01"]/div[1]/widget-app-item[1]/div/div/div[2]/div[1]')))
         course_schedual.click()
 
         time.sleep(0.1)
