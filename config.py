@@ -1,9 +1,9 @@
 
 """ mysql数据库 """
-HOST = '47.106.75.14'
+HOST = '182.254.200.142'
 PORT = 3306
 USER = 'root'
-PASSWORD = 'root'
+PASSWORD = '518040@Gxc'
 DATABASE = 'EhallTool'      # 目标数据库
 """ """
 
